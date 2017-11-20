@@ -1,38 +1,53 @@
-import React from 'react';
-import { StyleSheet, View } from 'react-native';
-import { StackNavigator } from 'react-navigation'
+import React from 'react'
+import { StyleSheet, View } from 'react-native'
+import { TabNavigator, StackNavigator } from 'react-navigation'
+import { MaterialCommunityIcons } from '@expo/vector-icons'
 import DeckList from "./containers/DeckList"
-import IndividualDeck from "./containers/IndividualDeck"
 import UdaciStatusBar from "./components/UdaciStatusBar"
-import {orange, white, yellow} from "./utils/colors"
-import { Constants } from 'expo'
+import {darkYellow, white, yellow} from "./utils/colors"
+import NewDeck from "./containers/NewDeck"
+import IndividualDeck from "./containers/IndividualDeck"
 
-const Stack = StackNavigator({
+const Tabs = TabNavigator({
     DeckList: {
         screen: DeckList,
         navigationOptions: {
-            title: 'UdaciCards',
-            // headerTintColor: white,
+            title: 'Decks',
+            tabBarIcon: () => <MaterialCommunityIcons name='cards-outline' size={30} color='black' />
+        }
+    },
+    NewDeck: {
+        screen: NewDeck,
+        navigationOptions: {
+            title: 'New deck',
+            tabBarIcon: () => <MaterialCommunityIcons name='credit-card-plus' size={30} color='black' />
+        }
+    }
+})
+
+const MainNavigation = StackNavigator({
+    Home: {
+        screen: Tabs,
+        navigationOptions: {
+            title: 'Deck List',
+            headerTintColor: white,
             headerStyle: {
-                // backgroundColor: yellow,
+                backgroundColor: yellow
             }
         }
     },
     DeckDetail: {
-        screen: IndividualDeck,
-        navigationOptions: {
-            title: 'Deck detail',
-        }
+        screen: IndividualDeck
     }
-
 })
+
 
 export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-          <UdaciStatusBar backgroundColor={orange} barStyle='light-content'/>
-          <Stack/>
+          <UdaciStatusBar backgroundColor={darkYellow} barStyle='light-content'/>
+          <MainNavigation/>
       </View>
     );
   }
@@ -41,5 +56,5 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1
-  },
+  }
 });
