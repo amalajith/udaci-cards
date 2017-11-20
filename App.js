@@ -1,4 +1,8 @@
 import React from 'react'
+import { createStore, applyMiddleware } from 'redux'
+import { Provider } from 'react-redux'
+import thunk from 'redux-thunk'
+import reducer from './reducers'
 import { StyleSheet, View } from 'react-native'
 import { TabNavigator, StackNavigator } from 'react-navigation'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
@@ -7,6 +11,11 @@ import UdaciStatusBar from "./components/UdaciStatusBar"
 import {darkYellow, white, yellow} from "./utils/colors"
 import NewDeck from "./containers/NewDeck"
 import IndividualDeck from "./containers/IndividualDeck"
+
+const store = createStore(
+    reducer,
+    applyMiddleware(thunk)
+)
 
 const Tabs = TabNavigator({
     DeckList: {
@@ -29,11 +38,13 @@ const MainNavigation = StackNavigator({
     Home: {
         screen: Tabs,
         navigationOptions: {
-            title: 'Deck List',
-            headerTintColor: white,
-            headerStyle: {
-                backgroundColor: yellow
-            }
+            title: 'UdaciCards',
+            // headerTintColor: white,
+            // headerStyle: {
+            //     backgroundColor: yellow,
+            //     paddingTop: -30,
+            //     height: 30
+            // }
         }
     },
     DeckDetail: {
@@ -45,10 +56,12 @@ const MainNavigation = StackNavigator({
 export default class App extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-          <UdaciStatusBar backgroundColor={darkYellow} barStyle='light-content'/>
-          <MainNavigation/>
-      </View>
+      <Provider store={store}>
+          <View style={styles.container}>
+              {/*<UdaciStatusBar backgroundColor={darkYellow} barStyle='light-content'/>*/}
+              <MainNavigation/>
+          </View>
+      </Provider>
     );
   }
 }

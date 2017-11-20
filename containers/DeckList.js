@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { View, FlatList } from 'react-native'
 import DeckListCard from "../components/DeckListCard"
+import {getDecksFromAsyncStorage} from "../actions/index"
 
 const data = {
     React: {
@@ -29,9 +31,13 @@ const data = {
 
 
 class DeckList extends Component {
+    componentDidMount(){
+        this.props.dispatch(getDecksFromAsyncStorage())
+    }
     render(){
-        const deckList = Object.keys(data).map((key) => {
-            return data[key]
+        const { decks } = this.props
+        const deckList = Object.keys(decks).map((key) => {
+            return decks[key]
         })
 
         return(
@@ -55,4 +61,8 @@ class DeckList extends Component {
     }
 }
 
-export default DeckList
+const mapStateToProps = (decks) => ({
+    decks
+})
+
+export default connect(mapStateToProps)(DeckList)
