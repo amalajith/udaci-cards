@@ -12,6 +12,7 @@ import {darkYellow, white, yellow} from "./utils/colors"
 import NewDeck from "./containers/NewDeck"
 import IndividualDeck from "./containers/IndividualDeck"
 import NewCard from "./containers/NewCard"
+import Quiz from "./containers/Quiz"
 
 const store = createStore(
     reducer,
@@ -53,6 +54,9 @@ const MainNavigation = StackNavigator({
     },
     NewCard: {
         screen: NewCard
+    },
+    Quiz: {
+        screen: Quiz
     }
 })
 

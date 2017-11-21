@@ -32,7 +32,7 @@ class NewCard extends Component {
                     question: '',
                     answer: ''
                 }, () => {
-                    // this.props.navigation.navigate('Tabs')
+                    this.props.navigation.goBack(null)
                 })
             })
     }

@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import {black, grey, white, yellow} from "../utils/colors"
+import {getDecksFromAsyncStorage} from "../actions/index"
 
 class IndividualDeck extends Component {
 
@@ -11,22 +13,34 @@ class IndividualDeck extends Component {
         }
     }
 
+    componentDidMount(){
+        this.props.dispatch(getDecksFromAsyncStorage())
+    }
+
     handleAddCardPress = () => {
         this.props.navigation.navigate('NewCard', {
             cardItem: this.props.navigation.state.params.cardItem
         })
     }
 
+    handleStartQuiz = () => {
+        this.props.navigation.navigate('Quiz', {
+            cardItem: this.props.navigation.state.params.cardItem
+        })
+    }
+
     render(){
         const { cardItem } = this.props.navigation.state.params
+        const { decks } = this.props
+        const deck = decks[cardItem.title]
         return(
             <View style={styles.container}>
-                <Text style={styles.textTitle}>{cardItem.title}</Text>
-                <Text>{cardItem.questions.length} questions</Text>
+                <Text style={styles.textTitle}>{deck.title}</Text>
+                <Text>{deck.questions.length} questions</Text>
                 <TouchableOpacity style={styles.iosBtnBasic} onPress={this.handleAddCardPress}>
                     <Text style={styles.iosBtnBasicText}>Add Card</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.iosBtnPrimary}>
+                <TouchableOpacity style={styles.iosBtnPrimary} onPress={this.handleStartQuiz}>
                     <Text style={styles.iosBtnPrimaryText}>Start Quiz</Text>
                 </TouchableOpacity>
             </View>
@@ -87,4 +101,8 @@ const styles = StyleSheet.create({
 
 })
 
-export default IndividualDeck
+const mapStateToProps = (decks) => ({
+    decks
+})
+
+export default connect(mapStateToProps)(IndividualDeck)
