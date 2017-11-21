@@ -4,32 +4,6 @@ import { View, FlatList } from 'react-native'
 import DeckListCard from "../components/DeckListCard"
 import {getDecksFromAsyncStorage} from "../actions/index"
 
-const data = {
-    React: {
-        title: 'React',
-        questions: [
-            {
-                question: 'What is React?',
-                answer: 'A library for managing user interfaces'
-            },
-            {
-                question: 'Where do you make Ajax requests in React?',
-                answer: 'The componentDidMount lifecycle event'
-            }
-        ]
-    },
-    JavaScript: {
-        title: 'JavaScript',
-        questions: [
-            {
-                question: 'What is a closure?',
-                answer: 'The combination of a function and the lexical environment within which that function was declared.'
-            }
-        ]
-    }
-}
-
-
 class DeckList extends Component {
     componentDidMount(){
         this.props.dispatch(getDecksFromAsyncStorage())

@@ -14,3 +14,18 @@ export const getDecks = () => {
     return AsyncStorage.getItem(CARD_STORAGE_KEY)
         .then(results => JSON.parse(results))
 }
+
+export const saveCard = ({title,question,answer}) => {
+    return AsyncStorage.getItem(CARD_STORAGE_KEY)
+        .then(results => JSON.parse(results))
+        .then((decks) => {
+            decks[title]['questions'] = [
+                ...decks[title].questions,
+                {
+                    question,
+                    answer
+                }
+            ]
+            AsyncStorage.setItem(CARD_STORAGE_KEY,JSON.stringify(decks))
+        })
+}

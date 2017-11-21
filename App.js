@@ -11,6 +11,7 @@ import UdaciStatusBar from "./components/UdaciStatusBar"
 import {darkYellow, white, yellow} from "./utils/colors"
 import NewDeck from "./containers/NewDeck"
 import IndividualDeck from "./containers/IndividualDeck"
+import NewCard from "./containers/NewCard"
 
 const store = createStore(
     reducer,
@@ -49,6 +50,9 @@ const MainNavigation = StackNavigator({
     },
     DeckDetail: {
         screen: IndividualDeck
+    },
+    NewCard: {
+        screen: NewCard
     }
 })
 
