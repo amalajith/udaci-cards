@@ -1,6 +1,26 @@
+# Udacity Project UdaciCards
+
+Project files for Udacity react native assessment
+
+## Installation instructions
+
+As a prerequisite, you will need to have Nodejs and npm installed. Clone the GiHub repository and use npm to install the dependencies.
+https://github.com/amalajith/udacicards.git
+
+You will also need to have the expo client. Download the expo client from Google play store or Apple store.
+
+Run npm start and follow the on screen instructions.
+
+
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
 
 Below you'll find information about performing common tasks. The most recent version of this guide is available [here](https://github.com/react-community/create-react-native-app/blob/master/react-native-scripts/template/README.md).
+
+## Testing
+The project has been tested on the following devices
+IOS - iPhone SE
+Android - Moto G2
+Simulator - IOS
 
 ## Table of Contents
 
