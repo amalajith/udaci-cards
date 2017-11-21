@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import {black, white, yellow, grey} from "../utils/colors"
+import {clearLocalNotification, setLocalNotification} from "../utils/helpers"
 
 class Quiz extends Component {
     state = {
@@ -9,6 +10,11 @@ class Quiz extends Component {
         correctCount: 0,
         inCorrectCount: 0,
         showAnswer: false,
+    }
+
+    componentDidMount(){
+        clearLocalNotification()
+            .then(setLocalNotification())
     }
 
     handleToggleAnswer = () => {

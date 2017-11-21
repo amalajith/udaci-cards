@@ -13,7 +13,7 @@ function decks(state = {}, action){
         case GET_ALL_DECKS:
             return action.decks
         case SAVE_CARD:
-            const newState = {
+            return {
                 ...state,
                 [action.title]: {
                     ...state[action.title],
@@ -26,8 +26,6 @@ function decks(state = {}, action){
                     ]
                 }
             }
-            console.log(newState)
-            return newState
         default:
             return state
     }

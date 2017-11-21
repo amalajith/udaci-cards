@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { KeyboardAvoidingView, Text, TouchableOpacity, TextInput, StyleSheet} from 'react-native'
-import { white, yellow, grey} from "../utils/colors"
-import { saveCardToAsyncStorage} from "../actions/index"
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
+import {KeyboardAvoidingView, View, Text, TouchableOpacity, TextInput, StyleSheet, Platform} from 'react-native'
+import {white, yellow, grey} from "../utils/colors"
+import {saveCardToAsyncStorage} from "../actions/index"
 
 class NewCard extends Component {
 
@@ -17,16 +17,16 @@ class NewCard extends Component {
         })
     }
 
-    handleAnswerChange  = (answer) => {
+    handleAnswerChange = (answer) => {
         this.setState({
             answer
         })
     }
 
     handleSubmit = () => {
-        const title  = this.props.navigation.state.params.deckTitle
-        const { question, answer } = this.state
-        this.props.dispatch(saveCardToAsyncStorage({title,question,answer}))
+        const title = this.props.navigation.state.params.deckTitle
+        const {question, answer} = this.state
+        this.props.dispatch(saveCardToAsyncStorage({title, question, answer}))
             .then(() => {
                 this.setState({
                     question: '',
@@ -38,12 +38,12 @@ class NewCard extends Component {
     }
 
 
-    render(){
-        const { deckTitle } = this.props.navigation.state.params
-        const { decks } = this.props
+    render() {
+        const {deckTitle} = this.props.navigation.state.params
+        const {decks} = this.props
         const deck = decks[deckTitle]
-        return(
-            <KeyboardAvoidingView behaviour='padding' style={styles.container}>
+        return (
+            <KeyboardAvoidingView behavior='padding' keyboardVerticalOffset={40} style={styles.container}>
                 <Text style={{fontSize: 15, paddingBottom: 20}}>
                     Create a new card in {deck.title}
                 </Text>

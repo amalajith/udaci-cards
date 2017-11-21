@@ -34,7 +34,7 @@ class NewDeck extends Component {
 
     render(){
         return(
-            <KeyboardAvoidingView behavior='padding' style={styles.container}>
+            <KeyboardAvoidingView behavior='padding' keyboardVerticalOffset={64} style={styles.container}>
                 <Text style={{fontSize: 15, paddingBottom: 20}}>
                     What is the title of your new deck?
                 </Text>
@@ -46,8 +46,6 @@ class NewDeck extends Component {
                 <TouchableOpacity style={styles.iosBtnPrimary} onPress={this.handleSubmit}>
                     <Text style={styles.iosBtnPrimaryText}>Create deck</Text>
                 </TouchableOpacity>
-
-
             </KeyboardAvoidingView>
         )
     }
