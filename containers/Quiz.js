@@ -21,7 +21,8 @@ class Quiz extends Component {
         this.setState((state) => (
             {
                 correctCount : state.correctCount + 1,
-                currentQuestionIndex: state.currentQuestionIndex + 1
+                currentQuestionIndex: state.currentQuestionIndex + 1,
+                showAnswer: false,
             }
         ))
     }
@@ -30,7 +31,8 @@ class Quiz extends Component {
         this.setState((state) => (
             {
                 inCorrectCount : state.inCorrectCount + 1,
-                currentQuestionIndex: state.currentQuestionIndex + 1
+                currentQuestionIndex: state.currentQuestionIndex + 1,
+                showAnswer: false,
             }
         ))
     }
@@ -49,9 +51,9 @@ class Quiz extends Component {
     }
 
     render(){
-        const { cardItem } = this.props.navigation.state.params
+        const { deckTitle } = this.props.navigation.state.params
         const { decks } = this.props
-        const deck = decks[cardItem.title]
+        const deck = decks[deckTitle]
         const { questions } = deck
         const { currentQuestionIndex, showAnswer, correctCount, inCorrectCount } = this.state
         if(currentQuestionIndex > (questions.length - 1)){
@@ -70,6 +72,7 @@ class Quiz extends Component {
         }
         return(
             <View style={styles.container}>
+                <Text>{currentQuestionIndex + 1}/{questions.length}</Text>
                 {!showAnswer ? (
                     <View>
                         <Text style={styles.textTitle}>

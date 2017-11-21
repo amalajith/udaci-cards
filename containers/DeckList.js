@@ -23,7 +23,7 @@ class DeckList extends Component {
                                       onPressItem={() => this.props.navigation.navigate(
                                           'DeckDetail',
                                           {
-                                              cardItem: item
+                                              deckTitle: item.title
                                           }
                                           )}/>
                     )}

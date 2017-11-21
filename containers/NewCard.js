@@ -24,7 +24,7 @@ class NewCard extends Component {
     }
 
     handleSubmit = () => {
-        const title  = this.props.navigation.state.params.cardItem.title
+        const title  = this.props.navigation.state.params.deckTitle
         const { question, answer } = this.state
         this.props.dispatch(saveCardToAsyncStorage({title,question,answer}))
             .then(() => {
@@ -39,12 +39,13 @@ class NewCard extends Component {
 
 
     render(){
-        const { cardItem } = this.props.navigation.state.params
-
+        const { deckTitle } = this.props.navigation.state.params
+        const { decks } = this.props
+        const deck = decks[deckTitle]
         return(
             <KeyboardAvoidingView behaviour='padding' style={styles.container}>
                 <Text style={{fontSize: 15, paddingBottom: 20}}>
-                    Create a new card in {cardItem.title}
+                    Create a new card in {deck.title}
                 </Text>
                 <TextInput value={this.state.question}
                            placeholder='Question'

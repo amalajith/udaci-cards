@@ -7,9 +7,9 @@ import {getDecksFromAsyncStorage} from "../actions/index"
 class IndividualDeck extends Component {
 
     static navigationOptions = ({navigation}) => {
-        const {cardItem} = navigation.state.params
+        const {deckTitle} = navigation.state.params
         return {
-            title: cardItem.title
+            title: deckTitle
         }
     }
 
@@ -19,20 +19,20 @@ class IndividualDeck extends Component {
 
     handleAddCardPress = () => {
         this.props.navigation.navigate('NewCard', {
-            cardItem: this.props.navigation.state.params.cardItem
+            deckTitle: this.props.navigation.state.params.deckTitle
         })
     }
 
     handleStartQuiz = () => {
         this.props.navigation.navigate('Quiz', {
-            cardItem: this.props.navigation.state.params.cardItem
+            deckTitle: this.props.navigation.state.params.deckTitle
         })
     }
 
     render(){
-        const { cardItem } = this.props.navigation.state.params
+        const { deckTitle } = this.props.navigation.state.params
         const { decks } = this.props
-        const deck = decks[cardItem.title]
+        const deck = decks[deckTitle]
         return(
             <View style={styles.container}>
                 <Text style={styles.textTitle}>{deck.title}</Text>

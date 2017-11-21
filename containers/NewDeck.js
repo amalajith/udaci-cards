@@ -23,7 +23,9 @@ class NewDeck extends Component {
                     this.setState({
                         deckTitle: ''
                     }, () => {
-                        this.props.navigation.navigate('DeckList')
+                        this.props.navigation.navigate('DeckDetail',{
+                            deckTitle
+                        })
                     })
                 })
         }
@@ -42,7 +44,7 @@ class NewDeck extends Component {
                            style={styles.textInput}
                 />
                 <TouchableOpacity style={styles.iosBtnPrimary} onPress={this.handleSubmit}>
-                    <Text style={styles.iosBtnPrimaryText}>Submit</Text>
+                    <Text style={styles.iosBtnPrimaryText}>Create deck</Text>
                 </TouchableOpacity>
 
 
